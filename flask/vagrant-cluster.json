@@ -1,0 +1,73 @@
+{
+    "blueprint": "vagrant",
+    "default_password" : "super-secret-password",
+    "configurations" : [
+        {
+	    "ams-env" : {
+		"properties" : {
+		    "metrics_collector_heapsize" : "64m"
+		}
+            },
+            "hadoop-env" : {
+                "properties" : {
+                    "dtnode_heapsize" : "64m",
+		    "hadoop_heapsize" : "64",
+		    "namenode_heapsize" : "64m",
+		    "namenode_opt_newsize" : "64m",
+		    "namenode_opt_maxpermsize" : "64m",
+		    "namenode_opt_maxnewsize" : "64m",
+		    "namenode_opt_permsize" : "64m",
+		    "nfsgateway_heapsize" : "64"
+                }
+            },
+            "mapred-env" : {
+                "properties" : {
+		    "jobhistory_heapsize" : "64"
+		}
+	    },
+            "yarn-env" : {
+                "properties" : {
+                    "apptimelineserver_heapsize" : "64",
+		    "resourcemanager_heapsize" : "64",
+		    "yarn_heapsize" : "64",
+		    "nodemanager_heapsize" : "64"
+		}
+	    },
+	    "hdfs-site" : {
+		"properties" : {
+                    "dfs.replication" : "2",
+		    "dfs.blocksize" : "1048576",
+                    "dfs.datanode.data.dir" : "/hdfs-vagrant/data",
+                    "dfs.datanode.du.reserved" : "1073741824"
+		}
+	    },
+	    "mapred-site" : {
+		"properties" : {
+		    "mapreduce.reduce.java.opts" : "-Xmx64m",
+                    "mapreduce.reduce.memory.mb" : "64"
+		}
+	    }
+	}
+    ],
+    "host_groups" : [
+        {
+            "name" : "master",
+            "hosts" : [         
+                { "fqdn" : "master0" }
+            ]
+        },
+        {
+            "name" : "slave",
+            "hosts" : [         
+                { "fqdn" : "slave0" },
+                { "fqdn" : "slave1" }
+            ]
+        },
+        {
+            "name" : "gateway",
+            "hosts" : [         
+                { "fqdn" : "gateway0" }
+            ]
+        }
+    ]
+}

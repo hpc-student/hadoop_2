@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% set title = 'Hadoop home' %}
+
+{% block content %}
+    <br>
+    <h1>Hadoop</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.javaClass.label }}<br>
+            {{ form.javaClass(size=64) }}<br>
+            {% for error in form.javaClass.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.dataInput.label }}<br>
+            {{ form.dataInput(size=40) }}<br>
+            {% for error in form.dataInput.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.dataOutput.label }}<br>
+            {{ form.dataOutput(size=40) }}<br>
+            {% for error in form.dataOutput.errors %}
+                 <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <p>
+        {% for l in result %}
+            <hr>
+            {{ l  }}
+            <br>
+        {% endfor %}
+    <hr>
+
+    {{ the_div|safe }}
+    {{ the_script|safe }}
+    <h1>{{ "fin" }}<h1>
+{% endblock %}
+
